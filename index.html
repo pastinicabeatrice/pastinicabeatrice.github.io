@@ -127,6 +127,8 @@ a.card:hover{transform:translateY(-3px);border-color:var(--blue)}
 .skills{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 @media (max-width:900px){.skills{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:520px){.skills{grid-template-columns:1fr}}
+.skills.three{grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){.skills.three{grid-template-columns:1fr}}
 .skill h5{margin:0 0 10px;font-size:15px;display:flex;gap:8px;align-items:center}
 .skill .chips{margin:0}
 
@@ -159,6 +161,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     <div class="links">
       <a href="#airlock">AIrlock</a>
       <a href="#projects" class="hide-m">Projects</a>
+      <a href="#research" class="hide-m">Research</a>
       <a href="#skills" class="hide-m">Skills</a>
       <a href="#about" class="hide-m">About</a>
       <button class="theme" id="theme" aria-label="Toggle dark mode">◐</button>
@@ -194,7 +197,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   <div class="stats">
     <div class="stat"><div class="n" data-count="85">85</div><div class="l">repositories on GitHub</div></div>
     <div class="stat"><div class="n" data-count="11">11</div><div class="l">AI & ML projects built from scratch</div></div>
-    <div class="stat"><div class="n" data-count="9">9</div><div class="l">programming languages</div></div>
+    <div class="stat"><div class="n">2</div><div class="l">research papers on AI, published in 2025</div></div>
     <div class="stat"><div class="n">0</div><div class="l">real data leaked in the AIrlock live test</div></div>
   </div>
 </div>
@@ -243,9 +246,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   <div class="duo">
     <div class="card wide">
       <div class="top"><div class="icon">🐝</div><span class="private">Private repo</span></div>
-      <h4>BeeDetection</h4>
-      <p>Deepfake detection for images and video, shipped on every surface people actually use: a backend, a website, a Chrome extension and a mobile app.</p>
-      <div class="chips"><span class="chip">Computer vision</span><span class="chip">JavaScript</span><span class="chip">Chrome extension</span><span class="chip">Mobile</span></div>
+      <h4>BeeDetection · deepfake detection</h4>
+      <p>My bachelor's thesis, grown into a full platform. It analyzes images and video (including the audio track) with pretrained deep networks, explains each verdict with Grad-CAM heatmaps and exports a PDF report. Works on the web and as a Chrome extension that checks content in real time.</p>
+      <div class="chips"><span class="chip">TensorFlow · Keras</span><span class="chip">XceptionNet · VGG-Face</span><span class="chip">EfficientNetV2</span><span class="chip">OpenCV</span><span class="chip">Librosa</span><span class="chip">Grad-CAM</span><span class="chip">React</span><span class="chip">Node · Express</span><span class="chip">MySQL · JWT</span><span class="chip">Chrome MV3</span></div>
     </div>
     <a class="card wide" href="https://github.com/pastinicabeatrice/research-ai-imm" target="_blank" rel="noopener">
       <div class="top"><div class="icon">🔎</div><span class="lang"><i style="background:#e34c26"></i>Research</span></div>
@@ -277,21 +280,62 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     <div><div class="eyebrow pixel">Toolbox</div><h2>What I work with</h2></div>
   </div>
   <div class="skills">
-    <div class="card skill"><h5>🤖 AI & ML</h5><div class="chips"><span class="chip">LLMs & agents</span><span class="chip">Claude API</span><span class="chip">Ollama</span><span class="chip">MCP</span><span class="chip">NumPy</span><span class="chip">scikit-learn</span><span class="chip">NLP · spaCy</span><span class="chip">OCR</span><span class="chip">Reinforcement learning</span></div></div>
+    <div class="card skill"><h5>🤖 AI & ML</h5><div class="chips"><span class="chip">LLMs & agents</span><span class="chip">Prompt engineering</span><span class="chip">Claude API</span><span class="chip">Ollama</span><span class="chip">MCP</span><span class="chip">TensorFlow · Keras</span><span class="chip">OpenCV</span><span class="chip">NumPy</span><span class="chip">scikit-learn</span><span class="chip">NLP · spaCy</span><span class="chip">OCR</span><span class="chip">Reinforcement learning</span></div></div>
     <div class="card skill"><h5>🔐 Security & privacy</h5><div class="chips"><span class="chip">HTTPS interception</span><span class="chip">Pseudonymization</span><span class="chip">GDPR</span><span class="chip">DPAPI encryption</span><span class="chip">Deepfake detection</span></div></div>
     <div class="card skill"><h5>💻 Languages</h5><div class="chips"><span class="chip">Python</span><span class="chip">Java</span><span class="chip">JavaScript</span><span class="chip">C#</span><span class="chip">C / C++</span><span class="chip">Kotlin</span><span class="chip">SQL</span><span class="chip">SAS</span></div></div>
-    <div class="card skill"><h5>🧱 Building products</h5><div class="chips"><span class="chip">React</span><span class="chip">Node · Express</span><span class="chip">REST APIs</span><span class="chip">Android · Compose</span><span class="chip">SQL Server · SQLite</span><span class="chip">Testing (pytest)</span><span class="chip">Customer discovery</span></div></div>
+    <div class="card skill"><h5>🧱 Building products</h5><div class="chips"><span class="chip">React</span><span class="chip">Node · Express</span><span class="chip">REST APIs</span><span class="chip">Android · Compose</span><span class="chip">SQL Server · MySQL · Oracle</span><span class="chip">ERP (Charisma)</span><span class="chip">Testing (pytest)</span><span class="chip">Customer discovery</span><span class="chip">Photoshop · Premiere</span></div></div>
+  </div>
+</section>
+
+<section id="research" class="reveal">
+  <div class="sec-head">
+    <div><div class="eyebrow pixel">Research</div><h2>Publications & conferences</h2></div>
+    <p>Co-authored with researchers from the Bucharest University of Economic Studies.</p>
+  </div>
+  <div class="duo">
+    <a class="card wide" href="https://link.springer.com/chapter/10.1007/978-981-95-6136-0_38" target="_blank" rel="noopener">
+      <div class="top"><div class="icon">📘</div><span class="lang">Springer · IE 2025</span></div>
+      <h4>Automating Student Attendance Using Facial Recognition Through Artificial Intelligence</h4>
+      <p>Presented at the 24th International Conference on Informatics in Economy. A digital attendance system that identifies students automatically, centralizes the data and visualizes attendance interactively.</p>
+      <span class="go">Read on Springer →</span>
+    </a>
+    <a class="card wide" href="https://doi.org/10.24818/issn14531305/29.2.2025.01" target="_blank" rel="noopener">
+      <div class="top"><div class="icon">💬</div><span class="lang">Informatica Economică · 2025</span></div>
+      <h4>Exploring Conversational Programming through the CHOP Paradigm and Artificial Intelligence</h4>
+      <p>Introduces Chat-Oriented Programming: building software through a dialogue with AI agents instead of code-first interaction. Vol. 29, No. 2/2025.</p>
+      <span class="go">Read the article →</span>
+    </a>
+  </div>
+  <div class="card" style="margin-top:18px;flex-direction:row;align-items:center;gap:16px">
+    <div class="icon">🏅</div>
+    <p style="margin:0"><b style="color:var(--ink)">Honorable mention</b> · Student Scientific Session, Faculty of Cybernetics, Statistics and Economic Informatics, ASE, April 2025, for <i>Deepfake and the cybersecurity paradigm: fighting digital disinformation with AI</i>.</p>
   </div>
 </section>
 
 <section id="about" class="reveal">
   <div class="sec-head">
-    <div><div class="eyebrow pixel">About</div><h2>Path so far</h2></div>
+    <div><div class="eyebrow pixel">Experience</div><h2>Path so far</h2></div>
   </div>
   <div class="timeline">
     <div class="tl"><div class="when pixel">Nov 2026</div><div><h4>AI Validation Bootcamp · AIrlock</h4><p>Validated a real problem with 31 survey respondents, built a working prototype and demoed it live on ChatGPT and Claude, all in 28 hours.</p></div></div>
-    <div class="tl"><div class="when pixel">Now</div><div><h4>M.Sc. student · POLITEHNICA Bucharest</h4><p>Focused on AI, software engineering and cybersecurity.</p></div></div>
-    <div class="tl"><div class="when pixel">2025</div><div><h4>B.Sc. in Economic Informatics</h4><p>Where the 80+ projects on my GitHub started: data structures, OOP, databases, web and mobile.</p></div></div>
+    <div class="tl"><div class="when pixel">2026 – 2028</div><div><h4>M.Sc. in Computers & IT · IT Management</h4><p>National University of Science and Technology POLITEHNICA Bucharest, Faculty of Automatic Control and Computers. Information security management, data mining, startup engineering, business process automation.</p></div></div>
+    <div class="tl"><div class="when pixel">2025 – 2026</div><div><h4>Teacher training program (Level I)</h4><p>Bucharest University of Economic Studies (ASE). Educational psychology, pedagogy and teaching practice.</p></div></div>
+    <div class="tl"><div class="when pixel">2022 – 2025</div><div><h4>B.Sc. in Economic Informatics</h4><p>Bucharest University of Economic Studies, Faculty of Cybernetics, Statistics and Economic Informatics. Thesis: deepfake detection with AI (BeeDetection). Where the 80+ projects on my GitHub started.</p></div></div>
+    <div class="tl"><div class="when pixel">Apr – May 2024</div><div><h4>Database Development Intern · SQL Server & ERP</h4><p>Autoreturn SRL. Designed and optimized SQL Server tables and queries, integrated databases with the Charisma ERP, built backup and restore procedures, tested internal software and turned business processes into technical specifications.</p></div></div>
+    <div class="tl"><div class="when pixel">Jul – Sep 2021</div><div><h4>Web Technician</h4><p>Oancea Expert Contab SRL, an accounting and audit firm. Maintained the company website, ran social media and online campaigns, and handled on-page SEO and content.</p></div></div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="skills three">
+    <div class="card skill"><h5>📜 Certifications</h5>
+      <p style="margin:0">Google Cloud · Prompt Engineering (2025)<br>Udemy · Learn Python, Beginner to Master (2024)<br>Udemy · Cyber Security, Beginner to Expert (2024)<br>SoloLearn · C, Intermediate C (2024)<br>Cisco · Introduction to Cybersecurity (2021)<br>Google · Digital Marketing Fundamentals (2020)</p></div>
+    <div class="card skill"><h5>🤝 Volunteering & leadership</h5>
+      <p style="margin:0">PR & multimedia content creator, Carpatia Ecology and Tourism Association (2022 – now)<br>Project manager & podcast host, Just Be You Project (2020 – 2022)<br>Regional coordinator, Generația VOT (2020 – 2021)<br>Career workshop facilitator, Laboratorul de Carieră (2020 – 2021)</p></div>
+    <div class="card skill"><h5>🌍 Languages</h5>
+      <p style="margin:0"><b style="color:var(--ink)">Romanian</b> · native<br><b style="color:var(--ink)">English</b> · B2<br><b style="color:var(--ink)">French</b> · A2</p>
+      <h5 style="margin-top:14px">🎨 Beyond code</h5>
+      <p style="margin:0">Painting, creative writing and storytelling, photo and video editing.</p></div>
   </div>
 </section>
 
