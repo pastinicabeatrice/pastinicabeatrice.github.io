@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beatrice Păștinică · AI & Software Engineering</title>
+<meta name="description" content="M.Sc. student at POLITEHNICA Bucharest. I build AI you can trust: AI agents, data privacy and software engineering.">
+<meta property="og:title" content="Beatrice Păștinică · AI & Software Engineering">
+<meta property="og:description" content="I build AI you can trust. AIrlock, BeeDetection and 80+ projects.">
+<meta property="og:image" content="https://pastinicabeatrice.github.io/assets/airlock-response.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Silkscreen&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef3fb; --bg2:#e3eaf7; --card:#ffffff; --ink:#1f2d45; --muted:#5c6f8a; --line:#d5deee;
+  --blue:#6f88b3; --blue-soft:#dfe7f5; --rose:#c9566b; --rose-soft:#f7e3e7;
+  --shadow:0 1px 2px rgba(31,45,69,.06),0 8px 24px rgba(31,45,69,.07);
+  --radius:18px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1724; --bg2:#141f30; --card:#172338; --ink:#e8eef8; --muted:#9db0cc; --line:#26354f;
+    --blue:#8fa9d6; --blue-soft:#1f2e47; --rose:#ee7f93; --rose-soft:#3a2230;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1724; --bg2:#141f30; --card:#172338; --ink:#e8eef8; --muted:#9db0cc; --line:#26354f;
+  --blue:#8fa9d6; --blue-soft:#1f2e47; --rose:#ee7f93; --rose-soft:#3a2230;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,"Segoe UI",Arial,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.pixel{font-family:Silkscreen,monospace;letter-spacing:.5px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700}
+.brand img{width:32px;height:32px;border-radius:50%;border:2px solid var(--card)}
+.links{display:flex;gap:22px;align-items:center}
+.links a{text-decoration:none;color:var(--muted);font-weight:500;font-size:15px}
+.links a:hover{color:var(--rose)}
+.theme{border:1px solid var(--line);background:var(--card);color:var(--ink);width:36px;height:36px;border-radius:10px;cursor:pointer;font-size:16px}
+@media (max-width:720px){.links a.hide-m{display:none}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+#net{position:absolute;inset:0;width:100%;height:100%;opacity:.6}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding-top:84px;padding-bottom:84px}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--blue);background:var(--card);border:1px solid var(--line);padding:6px 12px;border-radius:999px;box-shadow:var(--shadow)}
+.dot{width:8px;height:8px;background:#3fb27f;border-radius:2px}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.05;margin:20px 0 18px;letter-spacing:-1.5px;font-weight:800}
+h1 em{font-style:normal;color:var(--rose)}
+.lead{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:560px;margin:0 0 28px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:12px;font-weight:600;text-decoration:none;font-size:15px;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--rose);border-color:var(--rose);color:#fff}
+.avatar-card{justify-self:center;position:relative;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:var(--shadow);width:min(340px,100%)}
+.avatar-card img{width:100%;aspect-ratio:1;border-radius:20px;background:var(--blue-soft);display:block;image-rendering:auto}
+.avatar-card .meta{margin-top:14px;display:grid;gap:6px;font-size:14px;color:var(--muted)}
+.avatar-card .meta b{color:var(--ink)}
+.badge-float{position:absolute;right:-14px;top:22px;background:var(--rose);color:#fff;font-size:11px;padding:8px 10px;border-radius:10px;box-shadow:var(--shadow)}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-top:56px;padding-bottom:56px}.badge-float{right:8px}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:-34px auto 0;position:relative;z-index:2}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
+.stat .n{font-size:30px;font-weight:800;color:var(--rose);line-height:1.1}
+.stat .l{font-size:14px;color:var(--muted)}
+@media (max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+section{padding:88px 0 0}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(28px,4vw,38px);margin:6px 0 0;letter-spacing:-.8px;line-height:1.15}
+.sec-head p{margin:0;color:var(--muted);max-width:520px}
+.eyebrow{font-size:12px;color:var(--rose)}
+
+/* featured: AIrlock */
+.feature{display:grid;grid-template-columns:1fr 1.1fr;gap:0;background:var(--card);border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--shadow)}
+.feature .txt{padding:34px}
+.feature h3{font-size:30px;margin:8px 0 6px;letter-spacing:-.5px}
+.feature .tagline{color:var(--rose);font-weight:600;margin:0 0 14px}
+.feature ul{padding-left:18px;margin:14px 0 18px;color:var(--muted)}
+.feature li{margin:6px 0}
+.feature li b{color:var(--ink)}
+.shots{position:relative;background:linear-gradient(135deg,var(--blue-soft),var(--rose-soft));padding:28px;display:grid;align-content:center;min-height:420px}
+.shots img{width:100%;border-radius:12px;box-shadow:0 18px 40px rgba(20,30,50,.25);display:block}
+.shots img.back{position:absolute;width:62%;right:18px;bottom:18px;transform:rotate(2deg);border:3px solid var(--card)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:6px 12px;font:600 13px Inter,sans-serif;cursor:pointer}
+.tabs button.on{background:var(--ink);color:var(--card);border-color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.chip{font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:8px;background:var(--blue-soft);color:var(--ink)}
+.result{display:flex;gap:14px;align-items:center;background:var(--rose-soft);border-radius:14px;padding:12px 16px;margin:4px 0 18px}
+.result .big{font-size:34px;font-weight:800;color:var(--rose);line-height:1}
+.result span{font-size:14px;color:var(--ink)}
+@media (max-width:900px){.feature{grid-template-columns:1fr}.shots{min-height:300px}}
+@media (max-width:600px){.feature h3{font-size:24px}.feature .txt{padding:24px}.shots{padding:18px}}
+
+/* cards grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;text-decoration:none;transition:transform .15s,border-color .15s}
+a.card:hover{transform:translateY(-3px);border-color:var(--blue)}
+.card .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--blue-soft);font-size:20px}
+.lang{font-size:12px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:6px}
+.lang i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.card h4{margin:2px 0 0;font-size:18px;letter-spacing:-.2px}
+.card p{margin:0;color:var(--muted);font-size:14.5px}
+.card .go{margin-top:auto;font-size:13px;font-weight:600;color:var(--rose)}
+.private{font-size:11px;font-weight:700;color:var(--rose);background:var(--rose-soft);padding:3px 8px;border-radius:6px}
+
+/* big two-col cards */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:800px){.duo{grid-template-columns:1fr}}
+.card.wide h4{font-size:22px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media (max-width:900px){.skills{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.skills{grid-template-columns:1fr}}
+.skill h5{margin:0 0 10px;font-size:15px;display:flex;gap:8px;align-items:center}
+.skill .chips{margin:0}
+
+/* filters */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.filters button{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:7px 14px;font:600 13.5px Inter,sans-serif;cursor:pointer}
+.filters button.on{background:var(--rose);border-color:var(--rose);color:#fff}
+
+/* timeline */
+.timeline{display:grid;gap:14px}
+.tl{display:grid;grid-template-columns:140px 1fr;gap:18px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow)}
+.tl .when{color:var(--rose);font-size:13px;padding-top:2px}
+.tl h4{margin:0 0 4px;font-size:18px}
+.tl p{margin:0;color:var(--muted)}
+@media (max-width:600px){.tl{grid-template-columns:1fr;gap:6px}}
+
+footer{margin-top:96px;border-top:1px solid var(--line);padding:36px 0 48px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="https://github.com/pastinicabeatrice.png?size=64" alt="">Beatrice Păștinică</a>
+    <div class="links">
+      <a href="#airlock">AIrlock</a>
+      <a href="#projects" class="hide-m">Projects</a>
+      <a href="#skills" class="hide-m">Skills</a>
+      <a href="#about" class="hide-m">About</a>
+      <button class="theme" id="theme" aria-label="Toggle dark mode">◐</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <span class="kicker pixel"><span class="dot"></span>AI · DATA · PEOPLE</span>
+      <h1>I build AI<br>you can <em>trust.</em></h1>
+      <p class="lead">M.Sc. student at POLITEHNICA Bucharest, working where AI, software engineering and cybersecurity meet. I like turning a real problem into a working product, then proving it works.</p>
+      <div class="cta">
+        <a class="btn primary" href="#airlock">See AIrlock →</a>
+        <a class="btn" href="https://github.com/pastinicabeatrice" target="_blank" rel="noopener">GitHub profile</a>
+      </div>
+    </div>
+    <div class="avatar-card">
+      <span class="badge-float pixel">Hello!</span>
+      <img src="https://github.com/pastinicabeatrice.png?size=460" alt="Portrait of Beatrice Păștinică">
+      <div class="meta">
+        <div>📍 <b>Bucharest, Romania</b></div>
+        <div>🎓 <b>M.Sc.</b> · POLITEHNICA Bucharest</div>
+        <div>💡 AI agents · Data privacy · Automation</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n" data-count="85">85</div><div class="l">repositories on GitHub</div></div>
+    <div class="stat"><div class="n" data-count="11">11</div><div class="l">AI & ML projects built from scratch</div></div>
+    <div class="stat"><div class="n" data-count="9">9</div><div class="l">programming languages</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">real data leaked in the AIrlock live test</div></div>
+  </div>
+</div>
+
+<main class="wrap">
+
+<section id="airlock" class="reveal">
+  <div class="sec-head">
+    <div><div class="eyebrow pixel">Featured project</div><h2>AIrlock: nothing leaves unfiltered</h2></div>
+    <p>Built in 28 hours at an AI validation bootcamp, after surveying 19 employees and 12 employers about how they really use AI at work.</p>
+  </div>
+  <div class="feature">
+    <div class="txt">
+      <span class="chip">Python · local agent</span>
+      <h3>A privacy filter between employees and public AI</h3>
+      <p class="tagline">18 of 19 employees paste client data into ChatGPT unchanged. AIrlock fixes that without banning AI.</p>
+      <div class="result"><div class="big">0</div><span>real records reached ChatGPT or Claude in the live tech review: 9 messages full of personal data and 5 attempts to upload a financial report.</span></div>
+      <ul>
+        <li><b>Intercepts on Send</b> with a local HTTPS proxy that decrypts only ChatGPT and Claude.</li>
+        <li><b>Replaces names, national IDs and amounts</b> with consistent fake values, then restores the real ones in the AI's answer.</li>
+        <li><b>Reads Claude's binary protobuf protocol</b> with a schema-less parser written from scratch.</li>
+        <li><b>Stops sensitive documents</b> (PDF, Word, scans via OCR) and opens them in a local LLM instead.</li>
+        <li><b>Gives the employer numbers, never messages:</b> a dashboard and an MCP server over a metadata-only log.</li>
+      </ul>
+      <div class="chips">
+        <span class="chip">mitmproxy</span><span class="chip">Protobuf / Connect</span><span class="chip">Ollama · Qwen 3.5</span>
+        <span class="chip">EasyOCR</span><span class="chip">spaCy</span><span class="chip">Windows DPAPI</span><span class="chip">SQLite</span><span class="chip">MCP</span><span class="chip">346 tests</span>
+      </div>
+      <div class="cta" style="margin-top:22px">
+        <a class="btn primary" href="https://github.com/pastinicabeatrice/agent-ai-sigur" target="_blank" rel="noopener">View the code →</a>
+        <a class="btn" href="https://github.com/pastinicabeatrice/research-ai-imm" target="_blank" rel="noopener">Research behind it</a>
+      </div>
+    </div>
+    <div class="shots">
+      <div class="tabs" role="tablist" aria-label="AIrlock screenshots">
+        <button class="on" data-shot="response">Restored answer</button>
+        <button data-shot="local">Local AI</button>
+        <button data-shot="dashboard">Employer view</button>
+      </div>
+      <img id="shot" src="assets/airlock-response.webp" alt="AIrlock window showing the AI answer with the real data put back and the table of replaced values" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="duo">
+    <div class="card wide">
+      <div class="top"><div class="icon">🐝</div><span class="private">Private repo</span></div>
+      <h4>BeeDetection</h4>
+      <p>Deepfake detection for images and video, shipped on every surface people actually use: a backend, a website, a Chrome extension and a mobile app.</p>
+      <div class="chips"><span class="chip">Computer vision</span><span class="chip">JavaScript</span><span class="chip">Chrome extension</span><span class="chip">Mobile</span></div>
+    </div>
+    <a class="card wide" href="https://github.com/pastinicabeatrice/research-ai-imm" target="_blank" rel="noopener">
+      <div class="top"><div class="icon">🔎</div><span class="lang"><i style="background:#e34c26"></i>Research</span></div>
+      <h4>Sensitive data in public AI, for SMEs</h4>
+      <p>The research behind AIrlock: interviews, surveys, the competitive landscape and the GREEN / YELLOW / RED policy for what may leave a company.</p>
+      <span class="go">Read the research →</span>
+    </a>
+  </div>
+</section>
+
+<section id="projects" class="reveal">
+  <div class="sec-head">
+    <div><div class="eyebrow pixel">Selected work</div><h2>Projects</h2></div>
+    <p>Most AI projects are implemented from scratch, without ML frameworks, to understand what happens underneath.</p>
+  </div>
+  <div class="filters" role="group" aria-label="Filter projects">
+    <button class="on" data-f="all">All</button>
+    <button data-f="ai">AI & ML</button>
+    <button data-f="web">Web</button>
+    <button data-f="mobile">Mobile</button>
+    <button data-f="se">Software engineering</button>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p style="margin-top:22px;color:var(--muted)">And more than 60 other repositories (data structures in C, design patterns in Java, desktop apps in C#) on <a href="https://github.com/pastinicabeatrice?tab=repositories" target="_blank" rel="noopener" style="color:var(--rose);font-weight:600">GitHub</a>.</p>
+</section>
+
+<section id="skills" class="reveal">
+  <div class="sec-head">
+    <div><div class="eyebrow pixel">Toolbox</div><h2>What I work with</h2></div>
+  </div>
+  <div class="skills">
+    <div class="card skill"><h5>🤖 AI & ML</h5><div class="chips"><span class="chip">LLMs & agents</span><span class="chip">Claude API</span><span class="chip">Ollama</span><span class="chip">MCP</span><span class="chip">NumPy</span><span class="chip">scikit-learn</span><span class="chip">NLP · spaCy</span><span class="chip">OCR</span><span class="chip">Reinforcement learning</span></div></div>
+    <div class="card skill"><h5>🔐 Security & privacy</h5><div class="chips"><span class="chip">HTTPS interception</span><span class="chip">Pseudonymization</span><span class="chip">GDPR</span><span class="chip">DPAPI encryption</span><span class="chip">Deepfake detection</span></div></div>
+    <div class="card skill"><h5>💻 Languages</h5><div class="chips"><span class="chip">Python</span><span class="chip">Java</span><span class="chip">JavaScript</span><span class="chip">C#</span><span class="chip">C / C++</span><span class="chip">Kotlin</span><span class="chip">SQL</span><span class="chip">SAS</span></div></div>
+    <div class="card skill"><h5>🧱 Building products</h5><div class="chips"><span class="chip">React</span><span class="chip">Node · Express</span><span class="chip">REST APIs</span><span class="chip">Android · Compose</span><span class="chip">SQL Server · SQLite</span><span class="chip">Testing (pytest)</span><span class="chip">Customer discovery</span></div></div>
+  </div>
+</section>
+
+<section id="about" class="reveal">
+  <div class="sec-head">
+    <div><div class="eyebrow pixel">About</div><h2>Path so far</h2></div>
+  </div>
+  <div class="timeline">
+    <div class="tl"><div class="when pixel">Nov 2026</div><div><h4>AI Validation Bootcamp · AIrlock</h4><p>Validated a real problem with 31 survey respondents, built a working prototype and demoed it live on ChatGPT and Claude, all in 28 hours.</p></div></div>
+    <div class="tl"><div class="when pixel">Now</div><div><h4>M.Sc. student · POLITEHNICA Bucharest</h4><p>Focused on AI, software engineering and cybersecurity.</p></div></div>
+    <div class="tl"><div class="when pixel">2025</div><div><h4>B.Sc. in Economic Informatics</h4><p>Where the 80+ projects on my GitHub started: data structures, OOP, databases, web and mobile.</p></div></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Beatrice Păștinică · Bucharest</span>
+    <span class="pixel">AI · data · people</span>
+  </div>
+</footer>
+
+<script>
+// ---- proiectele
+const P=[
+ {f:"ai",i:"🧠",n:"Neural network from scratch",d:"A multilayer perceptron with backpropagation, written only with NumPy.",l:"Python",r:"retea-neuronala-numpy"},
+ {f:"ai",i:"🎮",n:"Q-learning agent",d:"An agent that learns by trial and error to escape a maze while avoiding traps.",l:"Python",r:"q-learning-python"},
+ {f:"ai",i:"👤",n:"Face recognition with eigenfaces",d:"Dimensionality reduction with PCA, then classification with an SVM.",l:"Python",r:"pca-face-recognition"},
+ {f:"ai",i:"✉️",n:"Spam classifier",d:"Multinomial Naive Bayes implemented from scratch.",l:"Python",r:"clasificator-spam-naive-bayes"},
+ {f:"ai",i:"📈",n:"Linear & logistic regression",d:"Both trained with gradient descent, from first principles.",l:"Python",r:"regresie-liniara-logistica"},
+ {f:"ai",i:"🧩",n:"K-means customer segmentation",d:"Clustering implemented in NumPy and applied to customer data.",l:"Python",r:"kmeans-clustering-python"},
+ {f:"ai",i:"🧬",n:"Genetic algorithm",d:"Chooses what to pack for a trip to maximize total value under a weight limit.",l:"Python",r:"algoritm-genetic-python"},
+ {f:"ai",i:"🗺️",n:"A* pathfinding",d:"Shortest path in a maze with informed search.",l:"Python",r:"a-star-pathfinding-python"},
+ {f:"ai",i:"💬",n:"Claude chatbot",d:"A command-line chatbot built on the Anthropic API.",l:"Python",r:"chatbot-claude-python"},
+ {f:"ai",i:"❌",n:"Unbeatable tic-tac-toe",d:"A browser game against a minimax opponent that never loses.",l:"JavaScript",r:"tic-tac-toe-minimax"},
+ {f:"web",i:"☀️",n:"Weather app",d:"Current weather and a 5-day forecast for any city.",l:"JavaScript",r:"meteo-app-js"},
+ {f:"web",i:"🔑",n:"Auth REST API",d:"Sign-up, login and token-protected routes with Node.js and Express.",l:"JavaScript",r:"auth-api-node"},
+ {f:"web",i:"📝",n:"Notes journal",d:"Full-stack notes app with React and Express.",l:"JavaScript",r:"jurnal-notite-react-express"},
+ {f:"web",i:"☄️",n:"Asteroids",d:"The classic arcade game, rebuilt with SVG and JavaScript.",l:"JavaScript",r:"asteroids-game"},
+ {f:"web",i:"🌅",n:"Sunset animation",d:"An ocean sunset drawn and animated with HTML and CSS only.",l:"HTML",r:"nemo-apus-animatie"},
+ {f:"mobile",i:"📱",n:"IP info · Kotlin",d:"Android app with Jetpack Compose for IP address and country info.",l:"Kotlin",r:"ip-info-android-kotlin"},
+ {f:"mobile",i:"🛰️",n:"IP tracker · Java",d:"Android app with authentication and a local search history.",l:"Java",r:"ip-tracker-android"},
+ {f:"se",i:"📊",n:"Stock titles server",d:"Market data from files and SQLite, served to many clients over TCP.",l:"Java",r:"titluri-bursa-java"},
+ {f:"se",i:"⚡",n:"Parallel processing",d:"Summing a huge vector sequentially and across multiple threads.",l:"Java",r:"procesare-paralela-java"},
+ {f:"se",i:"🧮",n:"Expression calculator",d:"A recursive descent parser for arithmetic expressions.",l:"Java",r:"calculator-expresii-java"},
+ {f:"se",i:"📦",n:"Inventory management",d:"Windows Forms app on SQL Server with Entity Framework.",l:"C#",r:"gestionare-stocuri-winforms"},
+ {f:"se",i:"🚗",n:"Tesla data analysis",d:"Sales, headcount and stock analysis in Python, SAS and Excel.",l:"SAS",r:"tesla-analiza-date"},
+];
+const C={Python:"#3572A5",JavaScript:"#f1e05a",Kotlin:"#A97BFF",Java:"#b07219","C#":"#178600",SAS:"#B34936",HTML:"#e34c26"};
+const grid=document.getElementById('grid');
+function draw(f){
+  grid.innerHTML=P.filter(p=>f==="all"||p.f===f).map(p=>`
+   <a class="card" href="https://github.com/pastinicabeatrice/${p.r}" target="_blank" rel="noopener">
+     <div class="top"><div class="icon">${p.i}</div><span class="lang"><i style="background:${C[p.l]}"></i>${p.l}</span></div>
+     <h4>${p.n}</h4><p>${p.d}</p><span class="go">View code →</span>
+   </a>`).join('');
+}
+draw("all");
+document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('on',x===b));draw(b.dataset.f)});
+
+// ---- capturi AIrlock
+const SH={response:["assets/airlock-response.webp","AIrlock window showing the AI answer with the real data put back"],
+          local:["assets/airlock-local-ai.webp","Local AI answering about a sensitive payroll document"],
+          dashboard:["assets/airlock-dashboard.webp","Employer dashboard with statistics, never message text"]};
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  const [src,alt]=SH[b.dataset.shot];const img=document.getElementById('shot');img.src=src;img.alt=alt});
+
+// ---- temă
+const root=document.documentElement;
+try{const t=localStorage.getItem('theme');if(t)root.dataset.theme=t}catch(e){}
+document.getElementById('theme').onclick=()=>{
+  const dark=root.dataset.theme?root.dataset.theme==="dark":matchMedia('(prefers-color-scheme:dark)').matches;
+  root.dataset.theme=dark?"light":"dark";try{localStorage.setItem('theme',root.dataset.theme)}catch(e){};paint()};
+
+// ---- apariție la scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// ---- rețeaua pixel-art din fundal (aceeași idee ca în coperta de LinkedIn)
+const cv=document.getElementById('net'),x=cv.getContext('2d');
+function paint(){
+  const w=cv.clientWidth,h=cv.clientHeight,dpr=Math.min(devicePixelRatio||1,2);
+  cv.width=w*dpr;cv.height=h*dpr;x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,w,h);
+  const css=getComputedStyle(root),blue=css.getPropertyValue('--blue').trim(),rose=css.getPropertyValue('--rose').trim();
+  let s=11;const r=()=>(s=(s*16807)%2147483647)/2147483647;const P=6;
+  const cols=Math.max(4,Math.floor(w/170)),pts=[];
+  for(let c=0;c<cols;c++){const n=3+Math.floor(r()*5);pts.push(Array.from({length:n},(_,k)=>[60+c*(w-120)/(cols-1)+(r()-.5)*30,40+k*(h-80)/(n-1)+(r()-.5)*24]))}
+  const px=(a,b,col,al)=>{x.globalAlpha=al;x.fillStyle=col;x.fillRect(Math.round(a/P)*P,Math.round(b/P)*P,P,P)};
+  for(let l=0;l<pts.length-1;l++)for(const a of pts[l])for(const b of pts[l+1]){if(r()<.6)continue;const hot=r()<.12;
+    const st=Math.hypot(b[0]-a[0],b[1]-a[1])/P;for(let t=0;t<=st;t+=1.8){const k=t/st;px(a[0]+(b[0]-a[0])*k,a[1]+(b[1]-a[1])*k,hot?rose:blue,hot?.35:.14)}}
+  for(const c of pts)for(const [a,b] of c){const hot=r()<.2;x.globalAlpha=hot?.55:.35;x.fillStyle=hot?rose:blue;
+    x.fillRect(Math.round(a/P)*P-P,Math.round(b/P)*P-P,P*3,P*3)}
+  x.globalAlpha=1;
+}
+paint();addEventListener('resize',()=>{clearTimeout(window.__t);window.__t=setTimeout(paint,150)});
+</script>
+</body>
+</html>
